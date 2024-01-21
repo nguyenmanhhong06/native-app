@@ -206,7 +206,7 @@ function Home({ navigation }) {
             data={dataSearch || DATA}
             numColumns={2}
             renderItem={({ item }) => (
-              <View style={{ width: '50%', marginLeft: 10 }} key={item._id}>
+              <View style={{ width: '45%', marginLeft: 10 }} key={item._id}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Item', {

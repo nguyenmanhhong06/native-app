@@ -9,6 +9,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import { addtocart, getAllProductId } from '../../apis/user_api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -55,13 +56,20 @@ function Item({ route, navigation }) {
       arrColor.push({ id: item, img: item });
     });
     setColor(arrColor);
+    console.log(img);
   }
   return (
     <View style={styles.container}>
-      <View>
-        <Image source={{ uri: img }} style={{ width: 'auto', height: 418 }} />
+      <ScrollView>
+        <View style={{}}>
+          <Image
+            source={{ uri: product.product_image }}
+            style={{ width: width, height: 418 }}
+            resizeMode="cover"
+          />
+        </View>
         <View style={{ paddingHorizontal: 20, marginTop: 10 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ gap: 10 }}>
             <Text style={{ fontSize: 20, fontWeight: '600', color: '#1D1E20' }}>
               {product.product_name}
             </Text>
@@ -81,8 +89,8 @@ function Item({ route, navigation }) {
                     source={{ uri: item.img }}
                     key={item.id}
                     style={{
-                      width: '100%',
-                      height: '100%',
+                      width: 77,
+                      height: 77,
                       objectFit: 'cover',
                       borderRadius: 10,
                     }}
@@ -118,51 +126,52 @@ function Item({ route, navigation }) {
             <Text style={{ fontSize: 16, fontWeight: '600', color: '#1D1E20', marginBottom: 10 }}>
               Description
             </Text>
-            <ScrollView style={{ height: 130 }}>
-              <Text style={{ color: '#8F959E' }}>{product.description}</Text>
-            </ScrollView>
-          </View>
-          <View
-            style={{
-              zIndex: 100,
-              position: 'relative',
-              marginTop: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginHorizontal: 20,
-            }}>
-            <TouchableOpacity
-              onPress={async () => {
-                const token = await AsyncStorage.getItem('access_token');
-                const result = await addtocart(product._id, token);
-                alert('Thanks for add my product to cart!!');
-              }}>
-              <View
-                style={{
-                  paddingHorizontal: 20,
-                  paddingVertical: 10,
-                  backgroundColor: '#E2E1E6',
-                  borderRadius: 10,
-                }}>
-                <Text style={{ fontSize: 14, fontWeight: '600', color: '#000' }}>Add to cart</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                alert('Thank you for buy my product!!');
-              }}>
-              <View
-                style={{
-                  paddingHorizontal: 20,
-                  paddingVertical: 10,
-                  backgroundColor: '#000',
-                  borderRadius: 10,
-                }}>
-                <Text style={{ fontSize: 14, fontWeight: '600', color: '#fff' }}>Buy now</Text>
-              </View>
-            </TouchableOpacity>
+            <Text style={{ color: '#8F959E' }}>{product.description}</Text>
+            {/* <ScrollView style={{ height: 130 }}>
+            </ScrollView> */}
           </View>
         </View>
+      </ScrollView>
+      <View
+        style={{
+          zIndex: 100,
+          position: 'relative',
+          marginTop: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginHorizontal: 20,
+          paddingBottom: 30,
+        }}>
+        <TouchableOpacity
+          onPress={async () => {
+            const token = await AsyncStorage.getItem('access_token');
+            const result = await addtocart(product._id, token);
+            alert('Thanks for add my product to cart!!');
+          }}>
+          <View
+            style={{
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              backgroundColor: '#E2E1E6',
+              borderRadius: 10,
+            }}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#000' }}>Add to cart</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            alert('Thank you for buy my product!!');
+          }}>
+          <View
+            style={{
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              backgroundColor: '#000',
+              borderRadius: 10,
+            }}>
+            <Text style={{ fontSize: 14, fontWeight: '600', color: '#fff' }}>Buy now</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -171,7 +180,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 50,
+    paddingTop: 30,
   },
 });
 export default Item;

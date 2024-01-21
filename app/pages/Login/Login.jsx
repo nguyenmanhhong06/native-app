@@ -75,9 +75,9 @@ function Login({ navigation }) {
             borderRadius: 18,
           }}
           onPress={async () => {
-            const result = await loginApi(body);
-            saveAccessToken(result.data.result.access_token);
-            saveProfileTo(result.data.result.user);
+            // const result = await loginApi(body);
+            // saveAccessToken(result.data.result.access_token);
+            // saveProfileTo(result.data.result.user);
             navigation.navigate('MyTabs');
           }}>
           <Text style={{ color: 'white', fontWeight: '600' }}>Login</Text>
