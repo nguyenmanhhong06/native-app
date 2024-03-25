@@ -7,27 +7,24 @@ import SignUp from './app/pages/SignUp/SignUp';
 import Home from './app/pages/Home/Home';
 import MyTabs from './app/pages/MyTabs/MyTabs';
 import Item from './app/pages/ProductItem/Item';
+import Cart from './app/pages/Cart/Cart';
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Payment"
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={SignUp} />
-        <Stack.Screen name="MyTabs" component={MyTabs} />
+        {/* <Stack.Screen name="Login" component={Login} /> */}
+        {/* <Stack.Screen name="Signup" component={SignUp} /> */}
+        <Stack.Screen name="Payment" component={Cart} />
+        {/* <Stack.Screen name="MyTabs" component={MyTabs} /> */}
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Item" component={Item} />
       </Stack.Navigator>
     </NavigationContainer>
-    // <NavigationContainer>
-    //   <View style={styles.container}>
-    //     <Login />
-    //   </View>
-    // </NavigationContainer>
   );
 }
 
